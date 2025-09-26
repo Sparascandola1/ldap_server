@@ -1,0 +1,51 @@
+# Root of the directory
+dn: dc=moria,dc=org
+objectClass: top
+objectClass: domain
+dc: moria
+
+# Organizational unit for users
+dn: ou=users,dc=moria,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: users
+
+# Organizational unit for groups
+dn: ou=groups,dc=moria,dc=org
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+# User: John Doe
+dn: uid=john,ou=users,dc=moria,dc=org
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: John Doe
+sn: Doe
+givenName: John
+uid: john
+mail: john@moria.org
+userPassword: password
+
+# User: Jane Smith
+dn: uid=jane,ou=users,dc=moria,dc=org
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Jane Smith
+sn: Smith
+givenName: Jane
+uid: jane
+mail: jane@moria.org
+userPassword: password
+
+# Group: Developers
+dn: cn=developers,ou=groups,dc=moria,dc=org
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: developers
+uniqueMember: uid=john,ou=users,dc=moria,dc=org
+uniqueMember: uid=jane,ou=users,dc=moria,dc=org

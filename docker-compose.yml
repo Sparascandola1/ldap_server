@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  opendj:
+    image: openidentityplatform/opendj:latest
+    container_name: opendj
+    environment:
+      # Base DN for your directory
+      BASE_DN: "dc=moria,dc=org"
+      # Directory manager credentials
+      ROOT_USER_DN: "cn=zerocool"
+      ROOT_PASSWORD: "admin"
+    ports:
+      - "1389:1389"   # LDAP
+      - "1636:1636"   # LDAPS
+      - "4444:4444"   # Admin/Replication
+    volumes:
+      - opendj-data:/opt/opendj/data
+      - ./data/bootstrap.ldif:/opt/opendj/bootstrap.ldif:ro
+      - ./bin/load-ldif.sh:/docker-entrypoint-init.d/init.sh:ro
+
+volumes:
+  opendj-data:
